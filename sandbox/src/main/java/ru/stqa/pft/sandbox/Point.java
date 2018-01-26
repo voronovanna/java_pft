@@ -1,5 +1,6 @@
 package ru.stqa.pft.sandbox;
 
+
 public class Point {
   public double x1;
   public double x2;
@@ -15,7 +16,6 @@ public class Point {
 
   public double distance (){
     return Math.sqrt((Math.pow(x2-x1,2)+Math.pow(y2-y1,2)));
-
   }
 
 }

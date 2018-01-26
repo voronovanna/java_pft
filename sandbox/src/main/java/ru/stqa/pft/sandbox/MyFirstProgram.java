@@ -11,7 +11,7 @@ public class MyFirstProgram {
         System.out.println("Площадь прямоугольника=" + r.area());
 
         Point p = new Point (1, 10, 3, 15);
-        System.out.println("Pасстояние между двумя точками = " + p.distance());
+        System.out.println("Pасстояние между двумя точками "+p.x1+","+p.y1+"  и  "+p.x2+","+p.y2+" = "+ p.distance());
     }
 
 
