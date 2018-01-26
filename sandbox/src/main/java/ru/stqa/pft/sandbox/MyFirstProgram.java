@@ -9,7 +9,9 @@ public class MyFirstProgram {
 
         Rectangle r = new Rectangle(4, 6);
         System.out.println("Площадь прямоугольника=" + r.area());
-        
+
+        Point p = new Point (1, 10, 3, 15);
+        System.out.println("Pасстояние между двумя точками = " + p.distance());
     }
 
 
