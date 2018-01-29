@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
@@ -9,8 +9,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
+import ru.stqa.pft.addressbook.model.GroupDataContacts;
 
-public class GroupContactsCreation {
+public class GroupContactsCreation extends TestBase{
   FirefoxDriver wd;
 
   @BeforeMethod
@@ -34,7 +35,7 @@ public class GroupContactsCreation {
   }
 
   @Test
-  public void testGroupContactsCreation() {
+  public void testGroupContactsCreation () {
     gotoContactsCreationPage();
     fillContactsForm(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "testNotes"));
     submitContactsCreation();
