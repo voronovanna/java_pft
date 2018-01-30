@@ -1,22 +1,27 @@
 package ru.stqa.pft.sandbox;
 
 public class MyFirstProgram {
-    public static void main(String[] args) {
-        hello("User");
+  public static void main(String[] args) {
+    hello("User");
 
-        Square s = new Square(7);
-        System.out.println("Площадь квадрата = " + s.area());
+    Square s = new Square(7);
+    System.out.println("Площадь квадрата = " + s.area());
 
-        Rectangle r = new Rectangle(4, 6);
-        System.out.println("Площадь прямоугольника=" + r.area());
+    Rectangle r = new Rectangle(4, 6);
+    System.out.println("Площадь прямоугольника=" + r.area());
 
-        Point p = new Point (1, 10, 3, 15);
-        System.out.println("Pасстояние между двумя точками "+p.x1+","+p.y1+"  и  "+p.x2+","+p.y2+" = "+ p.distance());
-    }
+    Point p1 = new Point(1, 3);
+    Point p2 = new Point(10, 15);
+    System.out.println("Расстояние между точками " + p1.x +","+ p1.y + "  и  " + p2.x+","+p2.y + " = " + distance(p1, p2));
+    // System.out.println("Расстояние между точками = " + p1.distance(p2));
+  }
 
+  public static void hello(String somebody) {
+    System.out.println("Hello," + somebody);
+  }
 
-    public static void hello(String somebody) {
-        System.out.println("Hello," + somebody);
-    }
+  public static double distance(Point p1, Point p2) {
+    return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
+  }
 
 }
