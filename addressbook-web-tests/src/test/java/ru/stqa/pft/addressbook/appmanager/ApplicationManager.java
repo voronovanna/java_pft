@@ -1,9 +1,7 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
@@ -23,20 +21,8 @@ public class ApplicationManager {
     sessionHelper.login("admin", "secret");
   }
 
-//  public void login(String username, String password) {
-//    wd.get("http://localhost/addressbook/edit.php");
-//    wd.findElement(By.id("header")).click();
-//    wd.findElement(By.name("user")).click();
-//    wd.findElement(By.name("user")).clear();
-//    wd.findElement(By.name("user")).sendKeys(username);
-//    wd.findElement(By.id("LoginForm")).click();
-//    wd.findElement(By.name("pass")).click();
-//    wd.findElement(By.name("pass")).clear();
-//    wd.findElement(By.name("pass")).sendKeys(password);
-//    wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-//  }
-
-  public void stop() { wd.quit();
+  public void stop() {
+    wd.quit();
   }
 
   public NavigationHelper getNavigationHelper() {

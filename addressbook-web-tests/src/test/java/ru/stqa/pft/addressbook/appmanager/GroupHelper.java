@@ -34,16 +34,12 @@ public class GroupHelper extends HelperBase {
   }
 
   public void selectGroup() {
-//      if (!wd.findElement(By.name("selected[]")).isSelected()) {
-//        click(By.name("selected[]"));
-//      }
     if (!wd.findElement(By.name("selected[]")).isSelected()) {
       click(By.name("selected[]"));}
     }
 
     public void submitContactsCreation () {
       click(By.xpath("//div[@id='content']/form/input[21]"));
-//    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
     }
 
     public void fillContactsForm (GroupDataContacts groupDataContacts){
@@ -56,7 +52,6 @@ public class GroupHelper extends HelperBase {
       field(By.name("home"), groupDataContacts.getPhone());
       field(By.name("mobile"), groupDataContacts.getPhonemobile());
       field(By.name("email"), groupDataContacts.getEmail());
-//  wd.findElement(By.name("email")).click();
       field(By.name("email"), groupDataContacts.getTestemail());
       field(By.name("homepage"), groupDataContacts.getHomepagetest());
       field(By.name("address2"), groupDataContacts.getAddress2());
