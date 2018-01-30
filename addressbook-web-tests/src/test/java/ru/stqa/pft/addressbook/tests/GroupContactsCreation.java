@@ -8,8 +8,8 @@ public class GroupContactsCreation extends TestBase{
   @Test
   public void testGroupContactsCreation () {
     app.gotoContactsCreationPage();
-    app.fillContactsForm(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "testNotes"));
-    app.submitContactsCreation();
+    app.getGroupHelper().fillContactsForm(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "testNotes"));
+    app.getGroupHelper().submitContactsCreation();
   }
 
 }
