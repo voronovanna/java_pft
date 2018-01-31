@@ -66,4 +66,18 @@ public class GroupHelper extends HelperBase {
   public void submitGroupModification() {
     click(By.name("update"));
   }
+
+  public void selectContact() {
+    if (!wd.findElement(By.id("8")).isSelected()) {
+      click(By.id("8"));
+    }
+  }
+
+  public void acceptAlert() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void deleteSelectedContacts() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
 }
