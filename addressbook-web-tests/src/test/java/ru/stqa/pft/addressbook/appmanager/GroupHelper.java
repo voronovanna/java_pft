@@ -71,7 +71,7 @@ public class GroupHelper extends HelperBase {
     if (!wd.findElement(By.name("selected[]")).isSelected()) {
       click(By.name("selected[]"));}
   }
-  
+
   public void acceptAlert() {
     wd.switchTo().alert().accept();
   }
