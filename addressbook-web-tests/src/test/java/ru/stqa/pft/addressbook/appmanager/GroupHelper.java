@@ -68,11 +68,10 @@ public class GroupHelper extends HelperBase {
   }
 
   public void selectContact() {
-    if (!wd.findElement(By.id("8")).isSelected()) {
-      click(By.id("8"));
-    }
+    if (!wd.findElement(By.name("selected[]")).isSelected()) {
+      click(By.name("selected[]"));}
   }
-
+  
   public void acceptAlert() {
     wd.switchTo().alert().accept();
   }
