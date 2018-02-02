@@ -2,7 +2,7 @@ package ru.stqa.pft.sandbox;
 
 public class MyFirstProgram {
     public static void main(String[] args) {
-        hello("user");
+        hello("User");
 
         Square s = new Square(7);
         System.out.println("Площадь квадрата = " + s.area());
