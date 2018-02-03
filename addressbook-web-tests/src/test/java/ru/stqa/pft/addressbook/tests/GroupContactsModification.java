@@ -8,7 +8,7 @@ public class GroupContactsModification extends TestBase{
   public void testContactsModification () {
     app.getNavigationHelper().gotoHomePage();
     app.getGroupHelper().initContactsModification();
-    app.getGroupHelper().fillContactsForm(new GroupDataContacts("TName1", "TestMiddleName1", "TestLastName1", "testNickname1", "testCompany1", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "testNotes"));
+    app.getGroupHelper().fillContactsForm(new GroupDataContacts("TName1", "TestMiddleName1", "TestLastName1", "testNickname1", "testCompany1", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", null,"testNotes"),false);
     app.getGroupHelper().submitContactsModification();
     app.getGroupHelper().returnToHomePage();
   }
