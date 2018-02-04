@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -38,34 +37,39 @@ public class GroupHelper extends HelperBase {
 
   public void selectGroup() {
     if (!wd.findElement(By.name("selected[]")).isSelected()) {
-      click(By.name("selected[]"));}
+      click(By.name("selected[]"));
     }
+  }
 
-    public void submitContactsCreation () {
-      click(By.xpath("//div[@id='content']/form/input[21]"));
-    }
+  public void submitContactsCreation() {
+    click(By.xpath("//div[@id='content']/form/input[21]"));
+  }
 
-    public void fillContactsForm (GroupDataContacts groupDataContacts, boolean creation){
-      field(By.name("firstname"), groupDataContacts.getName());
-      field(By.name("middlename"), groupDataContacts.getMiddle());
-      field(By.name("lastname"), groupDataContacts.getLastname());
-      field(By.name("nickname"), groupDataContacts.getNickname());
-      field(By.name("company"), groupDataContacts.getCompany());
-      field(By.name("address"), groupDataContacts.getAddress());
-      field(By.name("home"), groupDataContacts.getPhone());
-      field(By.name("mobile"), groupDataContacts.getPhonemobile());
-      field(By.name("email"), groupDataContacts.getEmail());
-      field(By.name("email"), groupDataContacts.getTestemail());
-      field(By.name("homepage"), groupDataContacts.getHomepagetest());
-      field(By.name("address2"), groupDataContacts.getAddress2());
-      field(By.name("phone2"), groupDataContacts.getTestphone2());
-      if (creation){
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupDataContacts.getGroup());
-      }
-      else { Assert.assertFalse(isElementPresent(By.name("new_group")));
-      }
-      field(By.name("notes"), groupDataContacts.getNotes());
+  public void initContactCreation() {
+    click(By.linkText("add new"));
+  }
+
+  public void fillContactsForm(GroupDataContacts groupDataContacts, boolean creation) {
+    field(By.name("firstname"), groupDataContacts.getName());
+    field(By.name("middlename"), groupDataContacts.getMiddle());
+    field(By.name("lastname"), groupDataContacts.getLastname());
+    field(By.name("nickname"), groupDataContacts.getNickname());
+    field(By.name("company"), groupDataContacts.getCompany());
+    field(By.name("address"), groupDataContacts.getAddress());
+    field(By.name("home"), groupDataContacts.getPhone());
+    field(By.name("mobile"), groupDataContacts.getPhonemobile());
+    field(By.name("email"), groupDataContacts.getEmail());
+    field(By.name("email"), groupDataContacts.getTestemail());
+    field(By.name("homepage"), groupDataContacts.getHomepagetest());
+    field(By.name("address2"), groupDataContacts.getAddress2());
+    field(By.name("phone2"), groupDataContacts.getTestphone2());
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupDataContacts.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+    field(By.name("notes"), groupDataContacts.getNotes());
+  }
 
   public void initGroupModification() {
     click(By.name("edit"));
@@ -77,7 +81,8 @@ public class GroupHelper extends HelperBase {
 
   public void selectContact() {
     if (!wd.findElement(By.name("selected[]")).isSelected()) {
-      click(By.name("selected[]"));}
+      click(By.name("selected[]"));
+    }
   }
 
   public void acceptAlert() {
@@ -108,6 +113,17 @@ public class GroupHelper extends HelperBase {
   }
 
   public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContacts(GroupDataContacts groupContacts, boolean b) {
+    initContactCreation();
+    fillContactsForm(groupContacts, true);
+    submitContactsCreation();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 }
