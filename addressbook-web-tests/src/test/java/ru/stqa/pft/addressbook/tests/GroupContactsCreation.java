@@ -5,7 +5,7 @@ import ru.stqa.pft.addressbook.model.GroupDataContacts;
 
 public class GroupContactsCreation extends TestBase{
 
-  @Test
+  @Test (enabled = false)
   public void testGroupContactsCreation () {
     app.gotoContactsCreationPage();
     app.getGroupHelper().createContacts(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes" ), true);
