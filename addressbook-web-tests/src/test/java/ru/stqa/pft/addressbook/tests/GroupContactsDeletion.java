@@ -4,20 +4,22 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupDataContacts;
 
+import java.util.List;
+
 public class GroupContactsDeletion extends TestBase{
   @Test
   public void testContactsDeletion () {
     app.getNavigationHelper().gotoHomePage();
-    int before = app.getGroupHelper().getContactsCount();
     if (! app.getGroupHelper().isThereAContact()){
       app.getGroupHelper().createContacts(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes"), true);
     }
-    app.getGroupHelper().selectContact(before - 1);
+    List<GroupDataContacts> before = app.getGroupHelper().getContactsList();
+    app.getGroupHelper().selectContact(before.size() - 1);
     app.getGroupHelper().deleteSelectedContacts();
     app.getGroupHelper().acceptAlert();
     app.getNavigationHelper().gotoHomePage();
-    int after = app.getGroupHelper().getContactsCount();
-    Assert.assertEquals(after, before - 1);
+    List<GroupDataContacts> after = app.getGroupHelper().getContactsList();
+    Assert.assertEquals(after.size(), before.size() - 1);
   }
 
   }
