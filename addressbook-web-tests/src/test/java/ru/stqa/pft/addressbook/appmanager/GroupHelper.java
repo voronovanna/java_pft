@@ -155,4 +155,8 @@ public class GroupHelper extends HelperBase {
     }
      return groups;
   }
+
+  public int getContactsCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }
