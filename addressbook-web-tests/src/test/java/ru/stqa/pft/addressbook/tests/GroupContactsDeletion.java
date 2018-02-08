@@ -12,7 +12,7 @@ public class GroupContactsDeletion extends TestBase{
     if (! app.getGroupHelper().isThereAContact()){
       app.getGroupHelper().createContacts(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes"), true);
     }
-    app.getGroupHelper().selectContact();
+    app.getGroupHelper().selectContact(before - 1);
     app.getGroupHelper().deleteSelectedContacts();
     app.getGroupHelper().acceptAlert();
     app.getNavigationHelper().gotoHomePage();
