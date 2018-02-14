@@ -76,20 +76,17 @@ public class GroupHelper extends HelperBase {
     field(By.name("notes"), groupDataContacts.getNotes());
   }
 
-  public void initGroupModification() {
-    click(By.name("edit"));
-  }
-
   public void submitGroupModification() {
     click(By.name("update"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
-//    if (!wd.findElement(By.name("selected[]")).isSelected()) {
-//      click(By.name("selected[]"));
-//    }
-  }
+  public void initGroupModification() { click(By.name("edit")); }
+
+   public void selectContact(int index) {
+//    wd.findElements(By.name("selected[]")).get(index).click();
+//    if (!wd.findElement(By.name("selected[]")).isSelected()) {click(By.name("selected[]")); }
+     wd.findElements(By.name("selected[]")).get(index).click();
+   }
 
   public void acceptAlert() {
     wd.switchTo().alert().accept();
@@ -100,7 +97,8 @@ public class GroupHelper extends HelperBase {
   }
 
   public void initContactsModification() {
-    click(By.cssSelector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a"));
+//  click(By.cssSelector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a"));
+    click(By.xpath("//*[@id=\"maintable\"]/tbody/tr/td[8]/a/img"));
   }
 
   public void submitContactsModification() {
@@ -157,18 +155,23 @@ public class GroupHelper extends HelperBase {
      return groups;
   }
 
-  public int getContactsCount() {
-    return wd.findElements(By.name("selected[]")).size();
-  }
-
   public List<GroupDataContacts> getContactsList() {
     List<GroupDataContacts> contacts = new ArrayList<GroupDataContacts>();
-    List<WebElement> elements = wd.findElements(By.name("selected[]"));
+//    List<WebElement> elements = wd.findElements(By.cssSelector("td.center"));
+      List<WebElement> elements = wd.findElements(By.name("selected[]"));
     for (WebElement element:elements){
       String name = element.getText();
-      GroupDataContacts contact = new GroupDataContacts(name, null, name, null, null, null, null, null, null, null, null, null, null, null, null);
+      String lastname = element.getText();
+      String id = element.getAttribute("value");
+//    String id = element.findElement(By.tagName("input")).getAttribute("value");
+      GroupDataContacts contact = new GroupDataContacts(id, name, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
   }
+
+  public int getContactsCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
 }

@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class GroupDataContacts {
+  private final String id;
   private final String name;
   private final String middle;
   private final String lastname;
@@ -13,6 +14,36 @@ public class GroupDataContacts {
   private final String phonemobile;
   private final String email;
   private final String testemail;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupDataContacts that = (GroupDataContacts) o;
+    return Objects.equals(id, that.id) &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(lastname, that.lastname);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, name, lastname);
+  }
+
+  @Override
+  public String toString() {
+    return "GroupDataContacts{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
+
+  public String getId() {
+    return id;
+  }
+
   private final String homepagetest;
   private final String address2;
   private final String testphone2;
@@ -20,6 +51,26 @@ public class GroupDataContacts {
   private final String notes;
 
   public GroupDataContacts(String name, String middle, String lastname, String nickname, String company, String address, String phone, String phonemobile, String email, String testemail, String homepagetest, String address2, String testphone2, String group, String notes) {
+    this.id = null;
+    this.name = name;
+    this.middle = middle;
+    this.lastname = lastname;
+    this.nickname = nickname;
+    this.company = company;
+    this.address = address;
+    this.phone = phone;
+    this.phonemobile = phonemobile;
+    this.email = email;
+    this.testemail = testemail;
+    this.homepagetest = homepagetest;
+    this.address2 = address2;
+    this.testphone2 = testphone2;
+    this.group = group;
+    this.notes = notes;
+  }
+
+  public GroupDataContacts(String id, String name, String middle, String lastname, String nickname, String company, String address, String phone, String phonemobile, String email, String testemail, String homepagetest, String address2, String testphone2, String group, String notes) {
+    this.id = id;
     this.name = name;
     this.middle = middle;
     this.lastname = lastname;
@@ -47,29 +98,6 @@ public class GroupDataContacts {
 
   public String getLastname() {
     return lastname;
-  }
-
-  @Override
-  public String toString() {
-    return "GroupDataContacts{" +
-            "name='" + name + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupDataContacts that = (GroupDataContacts) o;
-    return Objects.equals(name, that.name) &&
-            Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(name, lastname);
   }
 
   public String getNickname() {
