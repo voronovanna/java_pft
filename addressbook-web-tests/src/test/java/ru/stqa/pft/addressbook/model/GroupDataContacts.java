@@ -28,22 +28,6 @@ public class GroupDataContacts {
             '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupDataContacts that = (GroupDataContacts) o;
-    return id == that.id &&
-            Objects.equals(name, that.name) &&
-            Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, name, lastname);
-  }
-
   public int getId() {
     return id;
 
@@ -56,7 +40,7 @@ public class GroupDataContacts {
   private final String notes;
 
   public GroupDataContacts(String name, String middle, String lastname, String nickname, String company, String address, String phone, String phonemobile, String email, String testemail, String homepagetest, String address2, String testphone2, String group, String notes) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.name = name;
     this.middle = middle;
     this.lastname = lastname;
@@ -150,5 +134,21 @@ public class GroupDataContacts {
   public String getNotes() {
     return notes;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupDataContacts that = (GroupDataContacts) o;
+    return Objects.equals(name, that.name) &&
+            Objects.equals(lastname, that.lastname);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(name, lastname);
+  }
+
 
 }
