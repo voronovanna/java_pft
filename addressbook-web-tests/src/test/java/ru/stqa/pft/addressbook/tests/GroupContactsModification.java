@@ -16,9 +16,9 @@ public class GroupContactsModification extends TestBase{
       app.goTo().gotoHomePage();
     }
     List<GroupDataContacts> before = app.group().getContactsList();
-    app.group().selectContact(before.size()-1);
+//  app.group().getIndexContact(before.size()-1);
     app.group().initContactsModification();
-    GroupDataContacts contact = new GroupDataContacts(before.get(before.size()-1).getId(),"TName3", "TestMiddleName3", "TestLastName1", "testNickname1", "testCompany1", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", null,"testNotes");
+    GroupDataContacts contact = new GroupDataContacts(before.get(before.size()-1).getId(),"TName15", "TestMiddleName4", "TestLastName1", "testNickname1", "testCompany1", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", null,"testNotes");
     app.group().fillContactsForm(contact,false);
     app.group().submitContactsModification();
     app.group().returnToHomePage();

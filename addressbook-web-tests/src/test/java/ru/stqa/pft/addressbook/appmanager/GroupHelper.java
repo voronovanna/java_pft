@@ -82,10 +82,12 @@ public class GroupHelper extends HelperBase {
 
   public void initGroupModification() { click(By.name("edit")); }
 
-   public void selectContact(int index) {
-//    wd.findElements(By.name("selected[]")).get(index).click();
-//    if (!wd.findElement(By.name("selected[]")).isSelected()) {click(By.name("selected[]")); }
-     wd.findElements(By.name("selected[]")).get(index).click();
+  public void getIndexContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index);
+  }
+
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
    }
 
   public void acceptAlert() {
@@ -97,8 +99,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void initContactsModification() {
-//  click(By.cssSelector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a"));
-    click(By.xpath("//*[@id=\"maintable\"]/tbody/tr/td[8]/a/img"));
+   click(By.cssSelector("tr:last-child td:nth-child(8)"));
   }
 
   public void submitContactsModification() {
