@@ -3,7 +3,11 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class GroupDataContacts {
-  private final String id;
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  private int id;
   private final String name;
   private final String middle;
   private final String lastname;
@@ -16,11 +20,20 @@ public class GroupDataContacts {
   private final String testemail;
 
   @Override
+  public String toString() {
+    return "GroupDataContacts{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupDataContacts that = (GroupDataContacts) o;
-    return Objects.equals(id, that.id) &&
+    return id == that.id &&
             Objects.equals(name, that.name) &&
             Objects.equals(lastname, that.lastname);
   }
@@ -31,17 +44,9 @@ public class GroupDataContacts {
     return Objects.hash(id, name, lastname);
   }
 
-  @Override
-  public String toString() {
-    return "GroupDataContacts{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
-
-  public String getId() {
+  public int getId() {
     return id;
+
   }
 
   private final String homepagetest;
@@ -51,7 +56,7 @@ public class GroupDataContacts {
   private final String notes;
 
   public GroupDataContacts(String name, String middle, String lastname, String nickname, String company, String address, String phone, String phonemobile, String email, String testemail, String homepagetest, String address2, String testphone2, String group, String notes) {
-    this.id = null;
+    this.id = 0;
     this.name = name;
     this.middle = middle;
     this.lastname = lastname;
@@ -69,7 +74,7 @@ public class GroupDataContacts {
     this.notes = notes;
   }
 
-  public GroupDataContacts(String id, String name, String middle, String lastname, String nickname, String company, String address, String phone, String phonemobile, String email, String testemail, String homepagetest, String address2, String testphone2, String group, String notes) {
+  public GroupDataContacts(int id, String name, String middle, String lastname, String nickname, String company, String address, String phone, String phonemobile, String email, String testemail, String homepagetest, String address2, String testphone2, String group, String notes) {
     this.id = id;
     this.name = name;
     this.middle = middle;
