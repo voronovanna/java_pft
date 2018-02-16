@@ -11,7 +11,7 @@ public class GroupContactsDeletion extends TestBase{
   public void testContactsDeletion () {
     app.goTo().gotoHomePage();
     if (! app.group().isThereAContact()){
-      app.group().createContacts(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes"), true);
+      app.group().createContacts(new GroupDataContacts().withName("TName3").withMiddle("TestMiddleName3").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("testPhoneHome").withPhonemobile("testMobile").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withTestphone2("testHome2").withGroup("test1").withNotes("testNotes"), true);
     }
     List<GroupDataContacts> before = app.group().getContactsList();
     app.group().selectContact(before.size() - 1);

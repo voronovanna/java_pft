@@ -12,13 +12,16 @@ public class GroupContactsModification extends TestBase{
   public void testContactsModification () {
     app.goTo().gotoHomePage();
     if (! app.group().isThereAContact()){
-      app.group().createContacts(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes"), true);
+//    app.group().createContacts(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes"), true);
+      app.group().createContacts(new GroupDataContacts().withName("TName3").withMiddle("TestMiddleName3").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("testPhoneHome").withPhonemobile("testMobile").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withTestphone2("testHome2").withGroup("test1").withNotes("testNotes"), true);
       app.goTo().gotoHomePage();
     }
     List<GroupDataContacts> before = app.group().getContactsList();
 //  app.group().getIndexContact(before.size()-1);
     app.group().initContactsModification();
-    GroupDataContacts contact = new GroupDataContacts(before.get(before.size()-1).getId(),"TName15", "TestMiddleName4", "TestLastName1", "testNickname1", "testCompany1", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", null,"testNotes");
+//  GroupDataContacts contact = new GroupDataContacts(before.get(before.size()-1).getId(),"TName15", "TestMiddleName4", "TestLastName1", "testNickname1", "testCompany1", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", null,"testNotes");
+    GroupDataContacts contact = new GroupDataContacts()
+            .withId(before.get(before.size()-1).getId()).withName("TName18").withMiddle("TestMiddleName18").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("testPhoneHome").withPhonemobile("testMobile").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withTestphone2("testHome2").withGroup(null).withNotes("testNotes");
     app.group().fillContactsForm(contact,false);
     app.group().submitContactsModification();
     app.group().returnToHomePage();

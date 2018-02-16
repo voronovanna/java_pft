@@ -173,8 +173,7 @@ public class GroupHelper extends HelperBase {
       String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
-      GroupDataContacts contact = new GroupDataContacts(id, name, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null);
-      contacts.add(contact);
+      contacts.add(new GroupDataContacts().withId(id).withName(name).withLastname(lastname));
     }
     return contacts;
   }
