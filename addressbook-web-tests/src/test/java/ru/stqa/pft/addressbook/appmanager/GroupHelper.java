@@ -178,6 +178,18 @@ public class GroupHelper extends HelperBase {
     return contacts;
   }
 
+  public Set<GroupDataContacts> allCont() {
+    Set<GroupDataContacts> contacts = new HashSet<GroupDataContacts>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element:elements){
+      String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
+      contacts.add(new GroupDataContacts().withId(id).withName(name).withLastname(lastname));
+    }
+    return contacts;
+  }
+
   public int getContactsCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
