@@ -136,6 +136,22 @@ public class GroupHelper extends HelperBase {
     returnToHomePage();
   }
 
+  public void modifyContact(GroupDataContacts contact) {
+    initContactsModification();
+    fillContactsForm(contact,false);
+    submitContactsModification();
+    returnToHomePage();
+  }
+
+  public void deleteCont(int index) {
+    selectContact(index);
+    deleteSelectedContacts();
+    acceptAlert();
+    returnToHomePage();
+//  gotoHomePage();
+  }
+
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -199,4 +215,5 @@ public class GroupHelper extends HelperBase {
     deleteSelectedGroups();
     returnToGroupPage();
   }
+
 }
