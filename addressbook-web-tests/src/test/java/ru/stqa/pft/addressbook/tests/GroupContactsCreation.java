@@ -5,19 +5,18 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupDataContacts;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupContactsCreation extends TestBase{
 
   @Test
   public void testGroupContactsCreation () {
-    app.getNavigationHelper().gotoHomePage();
-    List<GroupDataContacts> before = app.getGroupHelper().getContactsList();
+    app.goTo().gotoHomePage();
+    List<GroupDataContacts> before = app.group().getContactsList();
     GroupDataContacts contact = new GroupDataContacts("TName3", "TestMiddleName3", "TestLastName1", "testNickname1", "testCompany1", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes");
     app.gotoContactsCreationPage();
-    app.getGroupHelper().createContacts(contact, true);
-    List<GroupDataContacts> after = app.getGroupHelper().getContactsList();
+    app.group().createContacts(contact, true);
+    List<GroupDataContacts> after = app.group().getContactsList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
 //  contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());

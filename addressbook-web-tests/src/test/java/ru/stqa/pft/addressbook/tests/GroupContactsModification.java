@@ -5,25 +5,24 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupDataContacts;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupContactsModification extends TestBase{
   @Test
   public void testContactsModification () {
-    app.getNavigationHelper().gotoHomePage();
-    if (! app.getGroupHelper().isThereAContact()){
-      app.getGroupHelper().createContacts(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes"), true);
-      app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
+    if (! app.group().isThereAContact()){
+      app.group().createContacts(new GroupDataContacts("TName", "TestMiddleName", "TestLastName", "testNickname", "testCompany", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", "test1","testNotes"), true);
+      app.goTo().gotoHomePage();
     }
-    List<GroupDataContacts> before = app.getGroupHelper().getContactsList();
-    app.getGroupHelper().selectContact(before.size()-1);
-    app.getGroupHelper().initContactsModification();
+    List<GroupDataContacts> before = app.group().getContactsList();
+    app.group().selectContact(before.size()-1);
+    app.group().initContactsModification();
     GroupDataContacts contact = new GroupDataContacts(before.get(before.size()-1).getId(),"TName3", "TestMiddleName3", "TestLastName1", "testNickname1", "testCompany1", "testAddress", "testPhoneHome", "testMobile", "testemail.com", "testemail@i.com", "testHomepage", "testAddress2", "testHome2", null,"testNotes");
-    app.getGroupHelper().fillContactsForm(contact,false);
-    app.getGroupHelper().submitContactsModification();
-    app.getGroupHelper().returnToHomePage();
-    List<GroupDataContacts> after = app.getGroupHelper().getContactsList();
+    app.group().fillContactsForm(contact,false);
+    app.group().submitContactsModification();
+    app.group().returnToHomePage();
+    List<GroupDataContacts> after = app.group().getContactsList();
     Assert.assertEquals(after.size(),before.size());
 
     before.remove(before.size() - 1);

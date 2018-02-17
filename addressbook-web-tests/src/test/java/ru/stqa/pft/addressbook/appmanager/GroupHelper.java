@@ -109,14 +109,14 @@ public class GroupHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
     returnToGroupPage();
   }
 
-  public void modifyGroup(int index, GroupData group) {
+  public void modify(int index, GroupData group) {
     selectGroup(index);
     initGroupModification();
     fillGroupForm(group);
@@ -143,7 +143,7 @@ public class GroupHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element: elements){
@@ -157,13 +157,11 @@ public class GroupHelper extends HelperBase {
 
   public List<GroupDataContacts> getContactsList() {
     List<GroupDataContacts> contacts = new ArrayList<GroupDataContacts>();
-//  List<WebElement> elements = wd.findElements(By.name("selected[]"));
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element:elements){
       String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
-//    String id = element.findElement(By.tagName("input")).getAttribute("value");
       GroupDataContacts contact = new GroupDataContacts(id, name, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null);
       contacts.add(contact);
     }
@@ -174,4 +172,9 @@ public class GroupHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  public void delete(int index) {
+    selectGroup(index);
+    deleteSelectedGroups();
+    returnToGroupPage();
+  }
 }
