@@ -90,9 +90,9 @@ public class GroupHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
    }
 
-  public void selectContactById(int id) {
-    wd.findElement(By.cssSelector("input[value='"+ id +"']")).click();
-  }
+  public void selectContactById(int id) { wd.findElement(By.cssSelector("input[value='"+ id +"']")).click(); }
+
+//  public void ContactById(int id) { wd.findElement(By.cssSelector("[href=\"edit.php?id="+ id +"\"]")); }
 
   public void acceptAlert() {
     wd.switchTo().alert().accept();
@@ -102,8 +102,10 @@ public class GroupHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void initContactsModification() {
-   click(By.cssSelector("tr:last-child td:nth-child(8)"));
+  public void initContactsModification(int id) {
+    wd.findElement(By.cssSelector("[href=\"edit.php?id="+ id +"\"]")).click();
+//  click(By.cssSelector("tr:last-child td:nth-child(8)"));
+//  wd.findElement(By.cssSelector("[href=\"edit.php?id="+ id +"\"]"));
   }
 
   public void submitContactsModification() {
@@ -141,7 +143,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void modifyContact(GroupDataContacts contact) {
-    initContactsModification();
+    initContactsModification(contact.getId());
     fillContactsForm(contact,false);
     submitContactsModification();
     returnToHomePage();

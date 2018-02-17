@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.GroupDataContacts;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupContactsModification extends TestBase{
 
@@ -22,19 +23,20 @@ public class GroupContactsModification extends TestBase{
 
   @Test
   public void testContactsModification () {
-    List<GroupDataContacts> before = app.group().getContactsList();
-    int index = before.size()-1;
+    Set<GroupDataContacts> before = app.group().allCont();
+    GroupDataContacts modifiedContact = before.iterator().next();
+//  int index = before.size()-1;
     GroupDataContacts contact = new GroupDataContacts()
-            .withId(before.get(index).getId()).withName("TName18").withMiddle("TestMiddleName18").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("testPhoneHome").withPhonemobile("testMobile").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withTestphone2("testHome2").withGroup(null).withNotes("testNotes");
+            .withId(modifiedContact.getId()).withName("TName18").withMiddle("TestMiddleName18").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("testPhoneHome").withPhonemobile("testMobile").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withTestphone2("testHome2").withGroup(null).withNotes("testNotes");
     app.group().modifyContact(contact);
-    List<GroupDataContacts> after = app.group().getContactsList();
+    Set<GroupDataContacts> after = app.group().allCont();
     Assert.assertEquals(after.size(),before.size());
 
-    before.remove(index);
+    before.remove(modifiedContact);
     before.add(contact);
-    Comparator<? super GroupDataContacts> byId = (g1, g2)->Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
+//  Comparator<? super GroupDataContacts> byId = (g1, g2)->Integer.compare(g1.getId(), g2.getId());
+//  before.sort(byId);
+//  after.sort(byId);
     Assert.assertEquals(before, after);
     }
 
