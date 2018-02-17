@@ -90,6 +90,10 @@ public class GroupHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
    }
 
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='"+ id +"']")).click();
+  }
+
   public void acceptAlert() {
     wd.switchTo().alert().accept();
   }
@@ -151,6 +155,12 @@ public class GroupHelper extends HelperBase {
 //  gotoHomePage();
   }
 
+  public void deleteCont(GroupDataContacts contact) {
+    selectContactById(contact.getId());
+    deleteSelectedContacts();
+    acceptAlert();
+    returnToHomePage();
+  }
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
