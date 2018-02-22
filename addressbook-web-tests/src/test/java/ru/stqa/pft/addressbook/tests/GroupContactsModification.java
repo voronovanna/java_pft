@@ -32,19 +32,11 @@ public class GroupContactsModification extends TestBase{
   public void testContactsModification () {
     Contacts before = app.group().allCont();
     GroupDataContacts modifiedContact = before.iterator().next();
-//  int index = before.size()-1;
     GroupDataContacts contact = new GroupDataContacts()
             .withId(modifiedContact.getId()).withName("TName18").withMiddle("TestMiddleName18").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("testPhoneHome").withPhonemobile("testMobile").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withTestphone2("testHome2").withGroup(null).withNotes("testNotes");
     app.group().modifyContact(contact);
     Contacts after = app.group().allCont();
     assertEquals(after.size(),before.size());
-
-//  before.remove(modifiedContact);
-//  before.add(contact);
-//  Comparator<? super GroupDataContacts> byId = (g1, g2)->Integer.compare(g1.getId(), g2.getId());
-//  before.sort(byId);
-//  after.sort(byId);
-//  Assert.assertEquals(before, after);
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 

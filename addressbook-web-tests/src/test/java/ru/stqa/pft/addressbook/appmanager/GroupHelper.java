@@ -11,9 +11,7 @@ import ru.stqa.pft.addressbook.model.GroupDataContacts;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends HelperBase {
 
@@ -93,8 +91,6 @@ public class GroupHelper extends HelperBase {
 
   public void selectContactById(int id) { wd.findElement(By.cssSelector("input[value='"+ id +"']")).click(); }
 
-//  public void ContactById(int id) { wd.findElement(By.cssSelector("[href=\"edit.php?id="+ id +"\"]")); }
-
   public void acceptAlert() {
     wd.switchTo().alert().accept();
   }
@@ -105,8 +101,6 @@ public class GroupHelper extends HelperBase {
 
   public void initContactsModification(int id) {
     wd.findElement(By.cssSelector("[href=\"edit.php?id="+ id +"\"]")).click();
-//  click(By.cssSelector("tr:last-child td:nth-child(8)"));
-//  wd.findElement(By.cssSelector("[href=\"edit.php?id="+ id +"\"]"));
   }
 
   public void submitContactsModification() {
@@ -121,6 +115,7 @@ public class GroupHelper extends HelperBase {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -129,6 +124,7 @@ public class GroupHelper extends HelperBase {
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -155,7 +151,6 @@ public class GroupHelper extends HelperBase {
     deleteSelectedContacts();
     acceptAlert();
     returnToHomePage();
-//  gotoHomePage();
   }
 
   public void deleteCont(GroupDataContacts contact) {
@@ -173,26 +168,20 @@ public class GroupHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-//  public List<GroupData> list() {
-//    List<GroupData> groups = new ArrayList<GroupData>();
-//    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-//    for (WebElement element: elements){
-//      String name = element.getText();
-//      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-//      groups.add(new GroupData().withId(id).withName(name));
-//    }
-//     return groups;
-//  }
+  private Groups groupCache = null;
 
   public Groups all() {
-    Groups groups = new Groups();
+    if (groupCache != null){
+      return new Groups(groupCache);
+    }
+    groupCache = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element: elements){
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      groups.add(new GroupData().withId(id).withName(name));
+      groupCache.add(new GroupData().withId(id).withName(name));
     }
-    return groups;
+    return new Groups (groupCache);
   }
 
   public List<GroupDataContacts> getContactsList() {
@@ -226,6 +215,7 @@ public class GroupHelper extends HelperBase {
   public void delete(GroupData group) {
     selectGroupById(group.getId());
     deleteSelectedGroups();
+    groupCache = null;
     returnToGroupPage();
   }
 

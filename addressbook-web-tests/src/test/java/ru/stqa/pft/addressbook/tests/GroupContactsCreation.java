@@ -19,12 +19,6 @@ public class GroupContactsCreation extends TestBase{
     Contacts after = app.group().allCont();
     assertThat(after.size(), equalTo(before.size() + 1));
 
-//  contact.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt());
-//  before.add(contact);
-//  Comparator<? super GroupDataContacts> byId = (g1, g2)->Integer.compare(g1.getId(), g2.getId());
-//  before.sort(byId);
-//  after.sort(byId);
-//  Assert.assertEquals(before, after);
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
   }
