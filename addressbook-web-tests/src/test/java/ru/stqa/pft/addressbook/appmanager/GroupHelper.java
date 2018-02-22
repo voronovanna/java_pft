@@ -219,6 +219,25 @@ public class GroupHelper extends HelperBase {
 //      String mobilephone = element.findElement(By.name("mobilephone")).getText();
 //      String workphone = element.findElement(By.name("workphone")).getText();
       String email = element.findElement(By.cssSelector("td:nth-child(5)")).getText();
+      String allPhones = element.findElement(By.cssSelector("td:nth-child(6)")).getText();
+      int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
+      contacts.add(new GroupDataContacts().withId(id).withName(name).withLastname(lastname)
+              .withEmail(email).withAllPhones(allPhones));
+    }
+    return contacts;
+  }
+
+  public Contacts allContTests1() {
+    Contacts contacts = new Contacts();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      String address = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
+//      String phone = element.findElement(By.name("phone")).getText();
+//      String mobilephone = element.findElement(By.name("mobilephone")).getText();
+//      String workphone = element.findElement(By.name("workphone")).getText();
+      String email = element.findElement(By.cssSelector("td:nth-child(5)")).getText();
       String[] phones = element.findElement(By.cssSelector("td:nth-child(6)")).getText().split("\n");
       int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
       contacts.add(new GroupDataContacts().withId(id).withName(name).withLastname(lastname)

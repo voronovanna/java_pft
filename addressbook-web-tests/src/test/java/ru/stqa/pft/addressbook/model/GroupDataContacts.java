@@ -21,6 +21,7 @@ public class GroupDataContacts {
   private String testphone2;
   private String group;
   private String notes;
+  private String allPhones;
 
   public GroupDataContacts withId(int id) {
     this.id = id;
@@ -107,6 +108,11 @@ public class GroupDataContacts {
     return this;
   }
 
+  public GroupDataContacts withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
 //  public GroupDataContacts(String name, String middle, String lastname, String nickname, String company, String address, String phone, String phonemobile, String email, String testemail, String homepagetest, String address2, String testphone2, String group, String notes) {
 //    this.id = Integer.MAX_VALUE;
 //    this.name = name;
@@ -178,6 +184,8 @@ public class GroupDataContacts {
   public String getPhonemobile() {
     return phonemobile;
   }
+
+  public String getAllPhones() {return allPhones; }
 
   @Override
   public boolean equals(Object o) {
