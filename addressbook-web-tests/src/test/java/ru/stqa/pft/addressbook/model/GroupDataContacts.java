@@ -13,6 +13,7 @@ public class GroupDataContacts {
   private String address;
   private String phone;
   private String phonemobile;
+  private String workphone;
   private String email;
   private String testemail;
   private String homepagetest;
@@ -67,7 +68,7 @@ public class GroupDataContacts {
   }
 
   public GroupDataContacts withWorkphone(String workphone) {
-    this.phonemobile = phonemobile;
+    this.workphone = workphone;
     return this;
   }
 
@@ -178,6 +179,33 @@ public class GroupDataContacts {
     return phonemobile;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupDataContacts that = (GroupDataContacts) o;
+    return id == that.id &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(lastname, that.lastname);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, name, lastname);
+  }
+
+  @Override
+  public String toString() {
+    return "GroupDataContacts{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
+
+  public String getWorkphone() { return workphone; }
+
   public String getEmail() {
     return email;
   }
@@ -204,27 +232,4 @@ public class GroupDataContacts {
     return notes;
   }
 
-  @Override
-  public String toString() {
-    return "GroupDataContacts{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupDataContacts that = (GroupDataContacts) o;
-    return id == that.id &&
-            Objects.equals(name, that.name) &&
-            Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, name, lastname);
-  }
 }

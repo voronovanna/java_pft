@@ -66,7 +66,7 @@ public class GroupHelper extends HelperBase {
     field(By.name("email"), groupDataContacts.getTestemail());
     field(By.name("homepage"), groupDataContacts.getHomepagetest());
     field(By.name("address2"), groupDataContacts.getAddress2());
-    field(By.name("phone2"), groupDataContacts.getTestphone2());
+//  field(By.name("phone2"), groupDataContacts.getTestphone2());
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupDataContacts.getGroup());
     } else {
@@ -208,6 +208,42 @@ public class GroupHelper extends HelperBase {
     return contacts;
   }
 
+  public Contacts allContTests() {
+    Contacts contacts = new Contacts();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element:elements){
+      String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      String address = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
+//      String phone = element.findElement(By.name("phone")).getText();
+//      String mobilephone = element.findElement(By.name("mobilephone")).getText();
+//      String workphone = element.findElement(By.name("workphone")).getText();
+      String email = element.findElement(By.cssSelector("td:nth-child(5)")).getText();
+      String[] phones = element.findElement(By.cssSelector("td:nth-child(6)")).getText().split("\n");
+      int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
+      contacts.add(new GroupDataContacts().withId(id).withName(name).withLastname(lastname)
+              .withEmail(email).withPhone(phones[0]).withPhonemobile(phones[1]).withWorkphone(phones[2]));
+    }
+    return contacts;
+  }
+
+  public Contacts allCont2() {
+    Contacts contacts = new Contacts();
+    List<WebElement> rows = wd.findElements(By.name("entry"));
+    for (WebElement row : rows){
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.name("input")).getAttribute("value"));
+      String name = cells.get(1).getText();
+      String lastname = cells.get(2).getText();
+      String address = cells.get(3).getText();
+      String email = cells.get(4).getText();
+      String[] phones = cells.get(5).getText().split("\n");
+      contacts.add(new GroupDataContacts().withId(id).withName(name).withLastname(lastname).withAddress(address)
+              .withEmail(email).withPhone(phones[0]).withPhonemobile(phones[1]).withWorkphone(phones[2]));
+    }
+    return contacts;
+  }
+
   public int getContactsCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
@@ -238,7 +274,6 @@ public class GroupHelper extends HelperBase {
     WebElement row = checkbox.findElement(By.xpath("./../.."));
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
-
   }
 
 }

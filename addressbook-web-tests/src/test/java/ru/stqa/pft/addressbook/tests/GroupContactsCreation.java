@@ -13,7 +13,7 @@ public class GroupContactsCreation extends TestBase{
   public void testGroupContactsCreation () {
     app.goTo().gotoHomePage();
     Contacts before = app.group().allCont();
-    GroupDataContacts contact = new GroupDataContacts().withName("TName3").withMiddle("TestMiddleName3").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("testPhoneHome").withPhonemobile("testMobile").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withTestphone2("testHome2").withGroup("test1").withNotes("testNotes");
+    GroupDataContacts contact = new GroupDataContacts().withName("TName3").withMiddle("Middle").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("444").withPhonemobile("555").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withGroup("test1").withNotes("testNotes");
     app.gotoContactsCreationPage();
     app.group().createContacts(contact, true);
     Contacts after = app.group().allCont();
