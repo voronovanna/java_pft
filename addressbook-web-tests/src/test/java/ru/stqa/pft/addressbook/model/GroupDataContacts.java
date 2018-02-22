@@ -66,6 +66,11 @@ public class GroupDataContacts {
     return this;
   }
 
+  public GroupDataContacts withWorkphone(String workphone) {
+    this.phonemobile = phonemobile;
+    return this;
+  }
+
   public GroupDataContacts withEmail(String email) {
     this.email = email;
     return this;
