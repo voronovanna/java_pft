@@ -58,6 +58,7 @@ public class GroupHelper extends HelperBase {
     field(By.name("middlename"), groupDataContacts.getMiddle());
     field(By.name("lastname"), groupDataContacts.getLastname());
     field(By.name("nickname"), groupDataContacts.getNickname());
+    attach(By.name("photo"), groupDataContacts.getPhoto());
     field(By.name("company"), groupDataContacts.getCompany());
     field(By.name("address"), groupDataContacts.getAddress());
     field(By.name("home"), groupDataContacts.getPhone());
