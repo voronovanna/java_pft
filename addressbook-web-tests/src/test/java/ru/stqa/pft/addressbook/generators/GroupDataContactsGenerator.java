@@ -1,4 +1,8 @@
 package ru.stqa.pft.addressbook.generators;
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.GroupDataContacts;
 
 import java.io.File;
@@ -10,15 +14,33 @@ import java.util.List;
 
 public class GroupDataContactsGenerator {
 
-  public static void main(String[] args) throws IOException {
-    int count = Integer.parseInt(args [0]);
-    File file = new File(args[1]);
+  @Parameter(names = "-c", description = "Contact count")
+  public int count;
 
-    List<GroupDataContacts> contacts = generateContacts(count);
-    save (contacts, file);
+  @Parameter (names = "-f", description = "Target file")
+  public String file;
+
+  public static void main(String[] args) throws IOException {
+    GroupDataContactsGenerator generator = new GroupDataContactsGenerator();
+//  new JCommander(generator, args);
+    JCommander JCommander = new JCommander (generator);
+    try {
+      JCommander.parse(args);
+    } catch (ParameterException ex) {
+      JCommander.usage();
+      return;
+    }
+    generator.run();
+//  int count = Integer.parseInt(args [0]);
+//  File file = new File(args[1]);
   }
 
-  private static void save(List<GroupDataContacts> contacts, File file) throws IOException {
+  private void run() throws IOException {
+    List<GroupDataContacts> contacts = generateContacts(count);
+    save (contacts, new File(file));
+  }
+
+  private void save(List<GroupDataContacts> contacts, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (GroupDataContacts contact : contacts){
@@ -27,7 +49,7 @@ public class GroupDataContactsGenerator {
     writer.close();
   }
 
-  private static List<GroupDataContacts> generateContacts(int count) {
+  private List<GroupDataContacts> generateContacts(int count) {
     List<GroupDataContacts> contacts = new ArrayList<GroupDataContacts>();
     for (int i = 0; i < count; i++){
       contacts.add(new GroupDataContacts().withName(String.format("testName %s", i))
