@@ -9,8 +9,6 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sun.deploy.util.SessionState.save;
-
 public class GroupDataGenerator {
 
   public static void main(String[] args) throws IOException {
