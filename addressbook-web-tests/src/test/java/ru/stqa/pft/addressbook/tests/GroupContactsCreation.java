@@ -22,7 +22,7 @@ public class GroupContactsCreation extends TestBase{
 
   @DataProvider
   public Iterator<Object[]> validContacts() throws IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
+    try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))){
     String xml = "";
     String line = reader.readLine();
     while (line != null){
@@ -32,7 +32,7 @@ public class GroupContactsCreation extends TestBase{
     xstream.processAnnotations(GroupDataContacts.class);
     List<GroupDataContacts> contacts = (List<GroupDataContacts>) xstream.fromXML(xml);
     return contacts.stream().map((d) -> new Object[] {d}).collect(Collectors.toList()).iterator();
-  }
+  }}
 
   @Test (dataProvider = "validContacts")
   public void testGroupContactsCreation (GroupDataContacts contact) {

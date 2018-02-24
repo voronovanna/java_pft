@@ -52,9 +52,9 @@ public class GroupDataContactsGenerator {
     xstream.alias("contact", GroupDataContacts.class);
     xstream.processAnnotations(GroupDataContacts.class);
     String xml = xstream.toXML(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer = new FileWriter(file)){
+      writer.write(xml);
+    }
   }
 
   private void saveAsCsv(List<GroupDataContacts> contacts, File file) throws IOException {
