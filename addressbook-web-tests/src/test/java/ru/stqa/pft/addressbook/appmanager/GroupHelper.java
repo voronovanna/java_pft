@@ -55,25 +55,25 @@ public class GroupHelper extends HelperBase {
 
   public void fillContactsForm(GroupDataContacts groupDataContacts, boolean creation) {
     field(By.name("firstname"), groupDataContacts.getName());
-    field(By.name("middlename"), groupDataContacts.getMiddle());
+//    field(By.name("middlename"), groupDataContacts.getMiddle());
     field(By.name("lastname"), groupDataContacts.getLastname());
-    field(By.name("nickname"), groupDataContacts.getNickname());
-    attach(By.name("photo"), groupDataContacts.getPhoto());
-    field(By.name("company"), groupDataContacts.getCompany());
+//    field(By.name("nickname"), groupDataContacts.getNickname());
+//    attach(By.name("photo"), groupDataContacts.getPhoto());
+//    field(By.name("company"), groupDataContacts.getCompany());
     field(By.name("address"), groupDataContacts.getAddress());
-    field(By.name("home"), groupDataContacts.getPhone());
-    field(By.name("mobile"), groupDataContacts.getPhonemobile());
-    field(By.name("email"), groupDataContacts.getEmail());
-    field(By.name("email"), groupDataContacts.getTestemail());
-    field(By.name("homepage"), groupDataContacts.getHomepagetest());
-    field(By.name("address2"), groupDataContacts.getAddress2());
+//    field(By.name("home"), groupDataContacts.getPhone());
+//    field(By.name("mobile"), groupDataContacts.getPhonemobile());
+//    field(By.name("email"), groupDataContacts.getEmail());
+//    field(By.name("email"), groupDataContacts.getTestemail());
+//    field(By.name("homepage"), groupDataContacts.getHomepagetest());
+//    field(By.name("address2"), groupDataContacts.getAddress2());
 //  field(By.name("phone2"), groupDataContacts.getTestphone2());
-    if (creation) {
+/**    if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupDataContacts.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
-    field(By.name("notes"), groupDataContacts.getNotes());
+    }**/
+//    field(By.name("notes"), groupDataContacts.getNotes());
   }
 
   public void submitGroupModification() {
@@ -135,7 +135,7 @@ public class GroupHelper extends HelperBase {
 
   public void createContacts(GroupDataContacts groupContacts, boolean b) {
     initContactCreation();
-    fillContactsForm(groupContacts, true);
+    fillContactsForm(groupContacts, false);
     submitContactsCreation();
     returnToHomePage();
   }
