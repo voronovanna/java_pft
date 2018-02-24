@@ -59,9 +59,9 @@ public class GroupHelper extends HelperBase {
 //  attach(By.name("photo"), groupDataContacts.getPhoto());
 //  field(By.name("company"), groupDataContacts.getCompany());
     field(By.name("address"), groupDataContacts.getAddress());
-//  field(By.name("home"), groupDataContacts.getPhone());
+    field(By.name("home"), groupDataContacts.getPhone());
 //  field(By.name("mobile"), groupDataContacts.getPhonemobile());
-//  field(By.name("email"), groupDataContacts.getEmail());
+    field(By.name("email"), groupDataContacts.getEmail());
 //  field(By.name("email"), groupDataContacts.getTestemail());
 //  field(By.name("homepage"), groupDataContacts.getHomepagetest());
 //  field(By.name("address2"), groupDataContacts.getAddress2());

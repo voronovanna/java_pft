@@ -61,7 +61,8 @@ public class GroupDataContactsGenerator {
     System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (GroupDataContacts contact : contacts){
-      writer.write(String.format("%s;%s;%s\n", contact.getName(), contact.getLastname(), contact.getAddress()));
+      writer.write(String.format("%s;%s;%s\n", contact.getName(), contact.getLastname(), contact.getAddress(),
+              contact.getEmail(), contact.getPhone()));
     }
     writer.close();
   }
@@ -70,7 +71,8 @@ public class GroupDataContactsGenerator {
     List<GroupDataContacts> contacts = new ArrayList<GroupDataContacts>();
     for (int i = 0; i < count; i++){
       contacts.add(new GroupDataContacts().withName(String.format("testName %s", i))
-              .withLastname(String.format("testLastname %s", i)).withAddress(String.format("testAddress %s", i)));
+              .withLastname(String.format("testLastname %s", i)).withAddress(String.format("testAddress %s", i))
+              .withEmail(String.format("test@gmail.com %s", i)).withPhone(String.format("11111 %s", i)));
     }
     return contacts;
   }

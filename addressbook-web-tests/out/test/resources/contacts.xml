@@ -3,15 +3,21 @@
     <name>testName 0</name>
     <lastname>testLastname 0</lastname>
     <address>testAddress 0</address>
+    <phone>11111 0</phone>
+    <email>test@gmail.com 0</email>
   </contact>
   <contact>
     <name>testName 1</name>
     <lastname>testLastname 1</lastname>
     <address>testAddress 1</address>
+    <phone>11111 1</phone>
+    <email>test@gmail.com 1</email>
   </contact>
   <contact>
     <name>testName 2</name>
     <lastname>testLastname 2</lastname>
     <address>testAddress 2</address>
+    <phone>11111 2</phone>
+    <email>test@gmail.com 2</email>
   </contact>
 </list>
