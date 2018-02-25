@@ -4,7 +4,6 @@ import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.GroupDataContacts;
 
 import java.io.BufferedReader;
@@ -22,7 +21,7 @@ public class GroupContactsCreation extends TestBase{
 
   @DataProvider
   public Iterator<Object[]> validContacts() throws IOException {
-    try(BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))){
+    try(BufferedReader reader = new BufferedReader(new FileReader(new File(app.properties.getProperty("web.resourcesContactsUrl"))))){
     String xml = "";
     String line = reader.readLine();
     while (line != null){

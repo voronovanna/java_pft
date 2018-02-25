@@ -18,7 +18,7 @@ public class GroupCreationTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroups() throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")))){
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File(app.properties.getProperty("web.resourcesGroupsUrl"))))){
     String xml = "";
     String line = reader.readLine();
     while (line != null){
