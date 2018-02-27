@@ -2,35 +2,89 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
- @XStreamAlias("contact")
+@XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class GroupDataContacts {
   @XStreamOmitField
+
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
+
+  @Column(name = "firstname")
   private String name;
+
+  @Column(name = "middlename")
   private String middle;
+
+  @Column(name = "lastname")
   private String lastname;
+
+  @Column(name = "nickname")
   private String nickname;
+
+  @Column(name = "company")
   private String company;
+
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String phone;
+
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String phonemobile;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workphone;
+
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
+
+  @Column(name = "email2")
+  @Type(type = "text")
   private String testemail;
+
+  @Column(name = "homepage")
+  @Type(type = "text")
   private String homepagetest;
+
+  @Column(name = "address2")
+  @Type(type = "text")
   private String address2;
+
+  @Column(name = "phone2")
+  @Type(type = "text")
   private String testphone2;
+
+  @Transient
   private String group;
+
+  @Column(name = "notes")
+  @Type(type = "text")
   private String notes;
+
+  @Transient
   private String allPhones;
-  private File photo;
+
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public GroupDataContacts withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -162,7 +216,9 @@ public class GroupDataContacts {
 //    this.notes = notes;
 //  }
 
-  public int getId() { return id; }
+  public int getId() {
+    return id;
+  }
 
   public String getName() {
     return name;
@@ -196,9 +252,13 @@ public class GroupDataContacts {
     return phonemobile;
   }
 
-  public String getAllPhones() {return allPhones; }
+  public String getAllPhones() {
+    return allPhones;
+  }
 
-  public File getPhoto() { return photo; }
+  public File getPhoto() {
+    return new File(photo);
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -225,7 +285,9 @@ public class GroupDataContacts {
             '}';
   }
 
-  public String getWorkphone() { return workphone; }
+  public String getWorkphone() {
+    return workphone;
+  }
 
   public String getEmail() {
     return email;
@@ -247,7 +309,9 @@ public class GroupDataContacts {
     return testphone2;
   }
 
-  public String getGroup() { return group; }
+  public String getGroup() {
+    return group;
+  }
 
   public String getNotes() {
     return notes;
