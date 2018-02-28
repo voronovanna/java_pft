@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupDataContacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,12 +37,14 @@ public class GroupContactsCreation extends TestBase{
   @Test (dataProvider = "validContacts")
   public void testGroupContactsCreation (GroupDataContacts contact) {
     app.goTo().gotoHomePage();
-    Contacts before = app.group().allCont();
+    Contacts before = app.db().contacts();
+//  Contacts before = app.group().allCont();
 //  File photo = new File("src/test/resources/stru.jpg");
 //  GroupDataContacts contact = new GroupDataContacts().withName("TName3").withMiddle("Middle").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("444").withPhonemobile("555").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2("testAddress2").withPhoto(photo).withGroup("test1").withNotes("testNotes");
     app.gotoContactsCreationPage();
     app.group().createContacts(contact, false);
-    Contacts after = app.group().allCont();
+    Contacts after = app.db().contacts();
+//  Contacts after = app.group().allCont();
     assertThat(after.size(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(
