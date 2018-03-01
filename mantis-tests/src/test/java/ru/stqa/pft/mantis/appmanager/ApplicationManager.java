@@ -46,6 +46,10 @@ public class ApplicationManager {
       wd.quit();}
   }
 
+  public HttpSession newSession(){
+    return new HttpSession(this);
+  }
+
   public RegistrationHelper registration() {
     if (registrationHelper == null) {
       registrationHelper = new RegistrationHelper(this);
@@ -67,5 +71,9 @@ public class ApplicationManager {
       wd.get(properties.getProperty("web.baseUrl"));
     }
     return wd;
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
   }
 }
