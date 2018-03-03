@@ -53,11 +53,11 @@ public class GroupHelper extends HelperBase {
 
   public void fillContactsForm(GroupDataContacts groupDataContacts, boolean creation) {
     field(By.name("firstname"), groupDataContacts.getName());
-//  field(By.name("middlename"), groupDataContacts.getMiddle());
+    field(By.name("middlename"), groupDataContacts.getMiddle());
     field(By.name("lastname"), groupDataContacts.getLastname());
 //  field(By.name("nickname"), groupDataContacts.getNickname());
 //  attach(By.name("photo"), groupDataContacts.getPhoto());
-//  field(By.name("company"), groupDataContacts.getCompany());
+    field(By.name("company"), groupDataContacts.getCompany());
     field(By.name("address"), groupDataContacts.getAddress());
     field(By.name("home"), groupDataContacts.getPhone());
 //  field(By.name("mobile"), groupDataContacts.getPhonemobile());

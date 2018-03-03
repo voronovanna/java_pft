@@ -1,21 +1,27 @@
 <list>
   <contact>
     <name>testName 0</name>
+    <middle>testMiddle 0</middle>
     <lastname>testLastname 0</lastname>
+    <company>testCompany 0</company>
     <address>testAddress 0</address>
     <phone>11111 0</phone>
     <email>test@gmail.com 0</email>
   </contact>
   <contact>
     <name>testName 1</name>
+    <middle>testMiddle 1</middle>
     <lastname>testLastname 1</lastname>
+    <company>testCompany 1</company>
     <address>testAddress 1</address>
     <phone>11111 1</phone>
     <email>test@gmail.com 1</email>
   </contact>
   <contact>
     <name>testName 2</name>
+    <middle>testMiddle 2</middle>
     <lastname>testLastname 2</lastname>
+    <company>testCompany 2</company>
     <address>testAddress 2</address>
     <phone>11111 2</phone>
     <email>test@gmail.com 2</email>

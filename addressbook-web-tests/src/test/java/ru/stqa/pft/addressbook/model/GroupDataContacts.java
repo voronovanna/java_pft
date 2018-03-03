@@ -260,31 +260,6 @@ public class GroupDataContacts {
     return new File(photo);
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupDataContacts that = (GroupDataContacts) o;
-    return id == that.id &&
-            Objects.equals(name, that.name) &&
-            Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, name, lastname);
-  }
-
-  @Override
-  public String toString() {
-    return "GroupDataContacts{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
-
   public String getWorkphone() {
     return workphone;
   }
@@ -315,6 +290,41 @@ public class GroupDataContacts {
 
   public String getNotes() {
     return notes;
+  }
+
+  @Override
+  public String toString() {
+    return "GroupDataContacts{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", middle='" + middle + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", company='" + company + '\'' +
+            ", address='" + address + '\'' +
+            ", phone='" + phone + '\'' +
+            ", email='" + email + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupDataContacts that = (GroupDataContacts) o;
+    return id == that.id &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(middle, that.middle) &&
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(company, that.company) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(phone, that.phone) &&
+            Objects.equals(email, that.email);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, name, middle, lastname, company, address, phone, email);
   }
 
 }
