@@ -40,4 +40,5 @@ public class EquationTests {
     Equation e = new Equation(0, 0, 0);
     Assert.assertEquals(e.rootNumber(),-1);
   }
+//Test
 }
