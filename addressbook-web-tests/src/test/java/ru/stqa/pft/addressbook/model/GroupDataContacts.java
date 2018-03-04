@@ -6,7 +6,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -69,8 +71,8 @@ public class GroupDataContacts {
   @Type(type = "text")
   private String testphone2;
 
-  @Transient
-  private String group;
+//@Transient
+//private String group;
 
   @Column(name = "notes")
   @Type(type = "text")
@@ -82,6 +84,11 @@ public class GroupDataContacts {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @ManyToMany (fetch=FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id") )
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public GroupDataContacts withPhoto(File photo) {
     this.photo = photo.getPath();
@@ -163,10 +170,10 @@ public class GroupDataContacts {
     return this;
   }
 
-  public GroupDataContacts withGroup(String group) {
-    this.group = group;
-    return this;
-  }
+//  public GroupDataContacts withGroup(String group) {
+//    this.group = group;
+//    return this;
+//  }
 
   public GroupDataContacts withNotes(String notes) {
     this.notes = notes;
@@ -268,6 +275,10 @@ public class GroupDataContacts {
     return email;
   }
 
+  public Groups getGroups() {
+    return new Groups (groups);
+  }
+
   public String getTestemail() {
     return testemail;
   }
@@ -284,9 +295,7 @@ public class GroupDataContacts {
     return testphone2;
   }
 
-  public String getGroup() {
-    return group;
-  }
+//public String getGroup() {return group;}
 
   public String getNotes() {
     return notes;

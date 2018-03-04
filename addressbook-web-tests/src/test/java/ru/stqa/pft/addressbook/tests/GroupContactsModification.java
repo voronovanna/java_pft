@@ -17,7 +17,7 @@ public class GroupContactsModification extends TestBase{
 //  if (! app.group().isThereAContact()){
 //  if (app.group().allCont().size()==0){
     if (app.db().contacts().size()== 0){
-      app.group().createContacts(new GroupDataContacts().withName("Name").withMiddle("MiddleName").withLastname("LastName").withNickname(null).withCompany("Company").withAddress("Address").withPhone("testPhoneHome").withPhonemobile(null).withEmail("testemail.com").withTestemail(null).withHomepagetest(null).withAddress2(null).withTestphone2(null).withGroup(null).withNotes(null), false);
+      app.group().createContacts(new GroupDataContacts().withName("Name").withMiddle("MiddleName").withLastname("LastName").withNickname(null).withCompany("Company").withAddress("Address").withPhone("testPhoneHome").withPhonemobile(null).withEmail("testemail.com").withTestemail(null).withHomepagetest(null).withAddress2(null).withTestphone2(null).withNotes(null), false);
       app.goTo().gotoHomePage();
     }
   }
@@ -28,7 +28,7 @@ public class GroupContactsModification extends TestBase{
 //  Contacts before = app.group().allCont();
     GroupDataContacts modifiedContact = before.iterator().next();
     GroupDataContacts contact = new GroupDataContacts()
-            .withId(modifiedContact.getId()).withName("Name").withMiddle("MiddleName").withLastname("LastName").withNickname(null).withCompany("Company").withAddress("Address").withPhone("testPhoneHome").withPhonemobile(null).withEmail("testemail.com").withTestemail(null).withHomepagetest(null).withAddress2(null).withTestphone2(null).withGroup(null).withNotes(null);
+            .withId(modifiedContact.getId()).withName("Name").withMiddle("MiddleName").withLastname("LastName").withNickname(null).withCompany("Company").withAddress("Address").withPhone("testPhoneHome").withPhonemobile(null).withEmail("testemail.com").withTestemail(null).withHomepagetest(null).withAddress2(null).withTestphone2(null).withNotes(null);
     app.goTo().gotoHomePage();
     app.group().modifyContact(contact);
     Contacts after = app.db().contacts();

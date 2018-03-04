@@ -12,7 +12,7 @@ public class ContactEmailTests extends TestBase {
   public void ensurePreconditions(){
     app.goTo().gotoHomePage();
     if (app.group().allCont().size()==0){
-      app.group().createContacts(new GroupDataContacts().withName("TName3").withMiddle("TestMiddleName3").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("1111").withPhonemobile("222").withWorkphone("333").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2(null).withTestphone2(null).withGroup("test1").withNotes(null), true);
+      app.group().createContacts(new GroupDataContacts().withName("TName3").withMiddle("TestMiddleName3").withLastname("TestLastName1").withNickname("testNickname1").withCompany("testCompany1").withAddress("testAddress").withPhone("1111").withPhonemobile("222").withWorkphone("333").withEmail("testemail.com").withTestemail("testemail@i.com").withHomepagetest("testHomepage").withAddress2(null).withTestphone2(null).withNotes(null), true);
       app.goTo().gotoHomePage();
     }
   }
