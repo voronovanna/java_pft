@@ -13,6 +13,10 @@ public class AddGroupToContact extends TestBase {
   @Test
   public void testAddGroupToContact (){
 
-  }
 
+/**#maintable > tbody > tr:nth-child(2) > td:nth-child(7) > a
+//*[@id="maintable"]/tbody/tr[2]/td[7]/a
+// #content > i > a**/
+
+  }
 }

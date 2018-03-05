@@ -9,7 +9,12 @@ public class ChangePasswordHelper extends HelperBase{
   }
 
   public void chooseUser (String username, String email) {
+    click(By.linkText("Manage"));
+    click(By.linkText("Manage Users"));
 
+    click(By.linkText("user3"));
+    type(By.name("password"), "root");
+    click(By.cssSelector("input[value='Reset Password']"));
   }
 
   public void start(String username, String email) {
