@@ -24,8 +24,8 @@ public class RestTests {
     Set<Issue> newIssues = getIssues();
     oldIssues.add(newIssue.withId(issueId));
     Assert.assertEquals(newIssues, oldIssues);
-    System.out.println("NEW" + newIssue);
-    System.out.println("OLD" + oldIssues);
+//    System.out.println("NEW" + newIssue);
+//    System.out.println("OLD" + oldIssues);
   }
 
   private Set<Issue> getIssues() throws IOException {
