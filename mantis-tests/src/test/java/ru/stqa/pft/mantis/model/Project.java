@@ -3,14 +3,10 @@ package ru.stqa.pft.mantis.model;
 public class Project {
 
   private int id;
+  private String name;
 
   public int getId() {
     return id;
-  }
-
-  public Project withId(int id) {
-    this.id = id;
-    return this;
   }
 
   public String getName() {
@@ -22,5 +18,9 @@ public class Project {
     return this;
   }
 
-  private String name;
+  public Project withId(int id) {
+    this.id = id;
+    return this;
+  }
+
 }
