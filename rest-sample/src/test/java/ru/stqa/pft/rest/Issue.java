@@ -5,6 +5,7 @@ public class Issue {
   private int id;
   private String subject;
   private String description;
+  String state_name;
 
   public Issue withId(int id) {
     this.id = id;
@@ -53,5 +54,9 @@ public class Issue {
     result = 31 * result + (subject != null ? subject.hashCode() : 0);
     result = 31 * result + (description != null ? description.hashCode() : 0);
     return result;
+  }
+
+  public String getStatus() {
+    return state_name;
   }
 }
