@@ -1,17 +1,17 @@
 package ru.stqa.pft.mantis.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 
 public class HelperBase {
   protected ApplicationManager app;
   protected WebDriver wd;
+  protected WebDriverWait wait;
 
-  public HelperBase(ApplicationManager app){
+  public HelperBase(ApplicationManager app) {
     this.app = app;
     this.wd = app.getDriver();
   }
@@ -33,7 +33,8 @@ public class HelperBase {
 
   protected void attach(By locator, File file) {
     if (file != null) {
-      wd.findElement(locator).sendKeys(file.getAbsolutePath());}
+      wd.findElement(locator).sendKeys(file.getAbsolutePath());
+    }
   }
 
   public boolean isAlertPresent() {
@@ -46,11 +47,17 @@ public class HelperBase {
   }
 
   protected boolean isElementPresent(By locator) {
-    try {wd.findElement(locator);
-      return true;}
-    catch (NoSuchElementException ex){
+    try {
+      wd.findElement(locator);
+      return true;
+    } catch (NoSuchElementException ex) {
       return false;
     }
+  }
+
+  protected void waitForElement(By locator) {
+    wait = new WebDriverWait(wd, 10);
+    WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
   }
 
 }

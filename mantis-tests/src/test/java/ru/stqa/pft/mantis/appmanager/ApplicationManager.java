@@ -22,8 +22,8 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
-  private ChangePasswordHelper changePasswordHelper;
   private SoapHelper soapHelper;
+  private ChangePasswordHelper changePasswordHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -31,14 +31,14 @@ public class ApplicationManager {
   }
 
   public void init() throws IOException {
-    String target = System.getProperty("target","local");
-    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
+    String target = System.getProperty("target", "local");
+    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    if (browser.equals (BrowserType.FIREFOX)){
+    if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-    } else if (browser.equals (BrowserType.CHROME)) {
+    } else if (browser.equals(BrowserType.CHROME)) {
       wd = new ChromeDriver();
-    } else if (browser.equals(BrowserType.IE)){
+    } else if (browser.equals(BrowserType.IE)) {
       wd = new InternetExplorerDriver();
     }
 
@@ -47,11 +47,12 @@ public class ApplicationManager {
   }
 
   public void stop() {
-    if (wd != null){
-      wd.quit();}
+    if (wd != null) {
+      wd.quit();
+    }
   }
 
-  public HttpSession newSession(){
+  public HttpSession newSession() {
     return new HttpSession(this);
   }
 
@@ -62,27 +63,20 @@ public class ApplicationManager {
     return registrationHelper;
   }
 
-  public ChangePasswordHelper changePassword() {
-    if (changePasswordHelper == null) {
-      changePasswordHelper = new ChangePasswordHelper(this);
-    }
-    return changePasswordHelper;
-  }
-
-  public FtpHelper ftp(){
-    if (ftp == null){
-    ftp = new FtpHelper(this);
+  public FtpHelper ftp() {
+    if (ftp == null) {
+      ftp = new FtpHelper(this);
     }
     return ftp;
   }
 
   public WebDriver getDriver() {
-    if (wd == null){
-      if (browser.equals (BrowserType.FIREFOX)){
+    if (wd == null) {
+      if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-      } else if (browser.equals (BrowserType.CHROME)) {
+      } else if (browser.equals(BrowserType.CHROME)) {
         wd = new ChromeDriver();
-      } else if (browser.equals(BrowserType.IE)){
+      } else if (browser.equals(BrowserType.IE)) {
         wd = new InternetExplorerDriver();
       }
 
@@ -96,26 +90,32 @@ public class ApplicationManager {
     return properties.getProperty(key);
   }
 
-  public MailHelper mail(){
-    if(mailHelper == null){
+  public ChangePasswordHelper change() {
+    if (changePasswordHelper == null) {
+      changePasswordHelper = new ChangePasswordHelper(this);
+    }
+    return changePasswordHelper;
+  }
+
+  public MailHelper mail() {
+    if (mailHelper == null) {
       mailHelper = new MailHelper(this);
     }
     return mailHelper;
   }
 
-  public JamesHelper james(){
-    if (jamesHelper == null){
+  public JamesHelper james() {
+    if (jamesHelper == null) {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
   }
 
   public SoapHelper soap() {
-    if (soapHelper == null){
+    if (soapHelper == null) {
       soapHelper = new SoapHelper(this);
     }
     return soapHelper;
   }
-
 
 }
