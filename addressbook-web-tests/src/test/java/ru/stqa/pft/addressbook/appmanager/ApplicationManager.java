@@ -27,6 +27,7 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private String browser;
   private DbHelper dbHelper;
+  private ContactHelper contactHelper;
 
 
   public ApplicationManager (String browser){
@@ -81,5 +82,9 @@ public class ApplicationManager {
 
   public DbHelper db () {
     return dbHelper;
+  }
+
+  public ContactHelper contact() {
+    return contactHelper;
   }
 }

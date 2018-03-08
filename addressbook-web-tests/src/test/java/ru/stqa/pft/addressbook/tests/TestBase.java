@@ -4,7 +4,9 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.GroupDataContacts;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.stream.Collectors;
@@ -38,5 +40,16 @@ public class TestBase {
       ));
     }
 
+  }
+
+  public void verifyContactListInUI() {
+    if (Boolean.getBoolean("verifyUI")) {
+      Contacts dbContacts = app.db().contacts();
+      Contacts uiContacts = app.contact().all();
+      assertThat(uiContacts, equalTo(dbContacts.stream()
+              .map((c) -> new GroupDataContacts().withId(c.getId()).withName(c.getName()).withLastname(c.getLastname())
+                      .withAddress(c.getAddress()))
+              .collect(Collectors.toSet())));
+    }
   }
 }
