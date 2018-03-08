@@ -129,7 +129,7 @@ public class ContactHelper extends HelperBase {
 
   public void create(GroupDataContacts contact, boolean creation) {
     initContactCreation();
-    fillContactForm(contact, false);
+    fillContactForm(contact, true);
     submitContactForm();
     contactCache = null;
     returnToHomePage();
