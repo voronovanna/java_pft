@@ -16,9 +16,27 @@ public class GroupHelper extends HelperBase {
   public GroupHelper(WebDriver wd) {
     super(wd);
   }
+/**
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
+  public void delete(GroupData group) {
+    selectGroupById(group.getId());
+    deleteSelectedGroups();
+    groupCache = null;
+    returnToGroupPage();
+  }
+
+  public void delete(int index) {
+    selectGroup(index);
+    deleteSelectedGroups();
+    groupCache = null;
+    returnToGroupPage();
+  }**/
 
   public void returnToGroupPage() {
-    click(By.linkText("group page"));
+    click(By.cssSelector(".msgbox a"));
   }
 
   public void submitGroupCreation() {
@@ -74,7 +92,7 @@ public class GroupHelper extends HelperBase {
 //  field(By.name("notes"), groupDataContacts.getNotes());
   }
 
-  public void submitGroupModification() {
+  public void submitContactsModification() {
     click(By.name("update"));
   }
 
@@ -106,7 +124,7 @@ public class GroupHelper extends HelperBase {
     wd.findElement(By.cssSelector("[href=\"edit.php?id=" + id + "\"]")).click();
   }
 
-  public void submitContactsModification() {
+  public void submitGroupModification() {
     click(By.name("update"));
   }
 

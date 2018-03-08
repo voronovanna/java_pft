@@ -172,7 +172,7 @@ public class GroupDataContacts {
 
 //  public GroupDataContacts withGroup(String group) {
 //    this.group = group;
-//    return this;
+//   return this;
 //  }
 
   public GroupDataContacts withNotes(String notes) {
@@ -295,7 +295,7 @@ public class GroupDataContacts {
     return testphone2;
   }
 
-//public String getGroup() {return group;}
+//  public String getGroup() {return group;}
 
   public String getNotes() {
     return notes;
@@ -336,4 +336,8 @@ public class GroupDataContacts {
     return Objects.hash(id, name, middle, lastname, company, address, phone, email);
   }
 
+  public GroupDataContacts inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
 }
