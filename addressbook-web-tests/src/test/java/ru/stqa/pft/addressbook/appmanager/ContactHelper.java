@@ -45,6 +45,28 @@ public class ContactHelper extends HelperBase {
     }
   }
 
+  public void fillContactForm2(ContactData contactData, boolean creation2) {
+    type(By.name("firstname"), contactData.getName());
+    type(By.name("lastname"), contactData.getLastname());
+    attach(By.name("photo"), contactData.getPhoto());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHomePhone());
+//  type(By.name("mobile"), contactData.getMobilePhone());
+//  type(By.name("work"), contactData.getWorkPhone());
+    type(By.name("email"), contactData.getEmail());
+//  type(By.name("email2"), contactData.getEmail2());
+//  type(By.name("email3"), contactData.getEmail3());
+    if (creation2) {
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(
+                contactData.getGroups().iterator().next().getName());
+      }
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
+  }
+
   public void initContactCreation() {
     click(By.cssSelector("li:nth-child(2)"));
   }
@@ -75,21 +97,29 @@ public class ContactHelper extends HelperBase {
     click(By.name("add"));
   }
 
-  public void removeFromGroup(GroupDataContacts contact, GroupData group) {
+  public void removeFromGroup(ContactData contact, GroupData group) {
     new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(group.getId()));
     selectContactById(contact.getId());
     click(By.name("remove"));
   }
 
-  public void addGroup(GroupDataContacts contact) {
-    selectContactById(contact.getId());
-    selectGroupToAdd(contact);
+  public void addGroup(ContactData contact2) {
+    selectContactById(contact2.getId());
+    selectGroupToAdd(contact2);
     addGroupToContact();
     contactCache = null;
     returnToHomePage();
   }
 
-  public void removeGroup(GroupDataContacts contact) {
+/** public void removeGroup(GroupDataContacts contact) {
+    selectGroupToDelete(contact);
+    selectContactById(contact.getId());
+    removeGroupFromContact();
+    contactCache = null;
+    returnToHomePage();
+  }**/
+
+  public void removeGroup2(ContactData contact) {
     selectGroupToDelete(contact);
     selectContactById(contact.getId());
     removeGroupFromContact();
@@ -97,7 +127,8 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public void selectGroupToAdd(GroupDataContacts contactData) {
+
+  public void selectGroupToAdd(ContactData contactData) {
     if (contactData.getGroups().size() > 0) {
       Assert.assertTrue(contactData.getGroups().size() == 1);
       new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
@@ -106,7 +137,7 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void selectGroupToDelete(GroupDataContacts contactData) {
+  public void selectGroupToDelete(ContactData contactData) {
     if (contactData.getGroups().size() > 0) {
       Assert.assertTrue(contactData.getGroups().size() == 1);
       new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
@@ -130,6 +161,14 @@ public class ContactHelper extends HelperBase {
   public void create(GroupDataContacts contact, boolean creation) {
     initContactCreation();
     fillContactForm(contact, true);
+    submitContactForm();
+    contactCache = null;
+    returnToHomePage();
+  }
+
+  public void create2(ContactData contact, boolean creation) {
+    initContactCreation();
+    fillContactForm2(contact, true);
     submitContactForm();
     contactCache = null;
     returnToHomePage();

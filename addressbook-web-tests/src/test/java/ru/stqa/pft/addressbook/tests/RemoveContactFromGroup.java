@@ -2,10 +2,7 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.GroupDataContacts;
-import ru.stqa.pft.addressbook.model.Groups;
+import ru.stqa.pft.addressbook.model.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,9 +21,9 @@ public class RemoveContactFromGroup extends TestBase {
 
   private void createContact() {
     app.goTo().gotoHomePage();
-    app.contact().create(
-            new GroupDataContacts()
-                    .withName("Name").withLastname("Lastname").withPhone("333")
+    app.contact().create2(
+            new ContactData()
+                    .withName("Name").withLastname("Lastname").withHomePhone("333")
                     .withEmail("test@test.com").withAddress("Hackerway 1"), true);
   }
 
@@ -39,14 +36,14 @@ public class RemoveContactFromGroup extends TestBase {
   public void testRemoveContactFromGroup() {
     Groups groups = app.db().groups();
     GroupData group = app.db().groups().iterator().next();
-    Contacts before = app.db().contacts();
-    GroupDataContacts modifiedContact = before.iterator().next();
-    GroupDataContacts contact = new GroupDataContacts().withId(modifiedContact.getId()).inGroup(groups.iterator().next());
+    Contacts2 before = app.db().contacts2();
+    ContactData modifiedContact = before.iterator().next();
+    ContactData contact2 = new ContactData().withId(modifiedContact.getId()).inGroup(groups.iterator().next());
     app.goTo().gotoHomePage();
-    app.contact().removeGroup(contact);
-    assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.db().contacts();
-    assertThat(after, equalTo(before.without(contact)));
+    app.contact2().removeGroup2(contact2);
+    assertThat(app.contact2().count(), equalTo(before.size()));
+    Contacts2 after = app.db().contacts2();
+    assertThat(after, equalTo(before.without((ContactData) contact2)));
     verifyContactListInUI();
   }
 }

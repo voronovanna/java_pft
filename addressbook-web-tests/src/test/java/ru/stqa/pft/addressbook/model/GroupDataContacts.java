@@ -336,8 +336,4 @@ public class GroupDataContacts {
     return Objects.hash(id, name, middle, lastname, company, address, phone, email);
   }
 
-  public GroupDataContacts inGroup(GroupData group) {
-    groups.add(group);
-    return this;
-  }
 }
